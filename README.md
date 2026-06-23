@@ -10,16 +10,19 @@ More simply, they are circular objects that deform to stick to other metaballs.
 
 ## How to make metaballs?
 
-You have a metaball function which looks similar to the circular function, but in the form $f(x) \geq 1$, which results in $\frac{r^2}{(x-h)^2 + (y-k)^2} \geq 1$
+You have a metaball function which looks similar to the circular function, but in the form $f(x) \geq 1$, 
+which results in 
+$$\frac{r^2}{(x-h)^2 + (y-k)^2} \geq 1$$
+
 where $r$ is the radius and $(h,k)$ is the centre of the circle
 
 When you add up all the contributions and sum is above a threshold (in this case, 1), you draw.
 
 Equation:
-$\sum f(x,y) \geq 1$
+$$\sum f(x,y) \geq 1$$
 
 Example when two metaballs exist:
-$\frac{r_1^2}{(x-h_1)^2 + (y-k_1)^2} + \frac{r_2^2}{(x-h_2)^2+(y-k_2)^2} \geq 1$
+$$\frac{r_1^2}{(x-h_1)^2 + (y-k_1)^2} + \frac{r_2^2}{(x-h_2)^2+(y-k_2)^2} \geq 1$$
 
 ## In Practice
 
