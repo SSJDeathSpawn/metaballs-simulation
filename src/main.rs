@@ -158,33 +158,33 @@ fn main() -> Result<(), String> {
             }
         }
 
-        // if idx > 500 {
-        //     continue;
-        // }
-        // unsafe {
-        //     gl::PixelStorei(gl::PACK_ALIGNMENT, 1);
-        //     gl::ReadPixels(
-        //         0,
-        //         0,
-        //         width as i32,
-        //         height as i32,
-        //         gl::RGB,
-        //         gl::UNSIGNED_BYTE,
-        //         pixels.as_mut_ptr() as *mut _,
-        //     );
-        //     for y in 0..height / 2 {
-        //         let row1 = (y * width * 3) as usize;
-        //         let row2 = ((height - 1 - y) * width * 3) as usize;
-        //
-        //         for i in 0..(width * 3) as usize {
-        //             pixels.swap(row1 + i, row2 + i);
-        //         }
-        //     }
-        //     let mut file = File::create(format!("img{:03}.ppm", idx)).map_err(|e| e.to_string())?;
-        //     write!(file, "P6\n{} {}\n255\n", width, height).map_err(|e| e.to_string())?;
-        //     file.write_all(&pixels).map_err(|e| e.to_string())?;
-        //     idx += 1;
-        // }
+        if idx > 500 {
+            continue;
+        }
+        unsafe {
+            gl::PixelStorei(gl::PACK_ALIGNMENT, 1);
+            gl::ReadPixels(
+                0,
+                0,
+                width as i32,
+                height as i32,
+                gl::RGB,
+                gl::UNSIGNED_BYTE,
+                pixels.as_mut_ptr() as *mut _,
+            );
+            for y in 0..height / 2 {
+                let row1 = (y * width * 3) as usize;
+                let row2 = ((height - 1 - y) * width * 3) as usize;
+
+                for i in 0..(width * 3) as usize {
+                    pixels.swap(row1 + i, row2 + i);
+                }
+            }
+            let mut file = File::create(format!("img{:03}.ppm", idx)).map_err(|e| e.to_string())?;
+            write!(file, "P6\n{} {}\n255\n", width, height).map_err(|e| e.to_string())?;
+            file.write_all(&pixels).map_err(|e| e.to_string())?;
+            idx += 1;
+        }
 
         // std::thread::sleep(Duration::new(0, 1_000_000_000 / 30));
     }
