@@ -35,3 +35,7 @@ To make the metaballs appear like rings, limit the draw only to if the contribut
 ## Output
 
 ![Metaballs](output.gif)
+
+## Instructions for running
+
+There is a `flake.nix` file provided if you use the Nix package manager. Otherwise a simple `$ cargo run` should work, provided you have libsdl2 installed. If you do not or don't want to, you can add the `bundled` feature flag to sdl2 which should cause cargo to compile SDL2 independently and link to that.
